@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App</title>
+    <link rel="stylesheet" href="./css/frozen.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div class="view">
+        <div class="homePage"></div>
+        <div class="platformMessage"></div>
+        <div class="Mine"></div>
+        <div class="footer">
+            <ul class="footer-ul"></ul>
+        </div> 
+    </div>
+
+    <script src="./js/zepto.min.js"></script>
+    <script src="./common/returnTop.js"></script>
+    <script>
+        window.onload = function () {
+            //调用返回顶部函数
+            returnTop();
+            //返回顶部动画
+            $('.returnTop').click(function() {
+                let time = setInterval(() => {
+                    document.documentElement.scrollTop-= document.documentElement.scrollTop/20
+                    if(document.documentElement.scrollTop <= 0){
+                        clearInterval(time)
+                        return
+                    }
+                }, 5);
+            });
+
+            let homePage = document.querySelector('.homePage');
+            let platformMessage = document.querySelector('.platformMessage');
+            let Mine = document.querySelector('.Mine');
+
+            let footers = ['./img/首页_13.png', './img/首页_14.png', './img/首页_15.png'];
+            let footertips = ['首页', '平台消息', '我的'];
+            let footerUl = document.querySelector('.footer-ul');
+            for (var i = 0; i < footers.length; i++) {
+                footerUl.innerHTML += `<li><img src="${footers[i]}" alt=""><div>${footertips[i]}</div></li>`
+            }
+            let footerUlLi = footerUl.querySelectorAll('li');
+
+            //初始化
+            function init() {
+                footerUlLi[0].children[1].style.color = '#0F5299';
+                footerUlLi[0].children[1].style.fontWeight = 600;
+                let title = '浙江合达铝业有限公司';
+                let swigger = './img/swagger.png';
+                let imgs = ['./img/首页_01.png', './img/首页_02.png', './img/首页_03.png', './img/首页_04.png', './img/首页_05.png', 
+                            './img/首页_06.png', './img/首页_07.png', './img/首页_08.png', './img/首页_09.png', './img/首页_10.png',
+                            './img/首页_11.png', './img/首页_12.png'];
+                let tips = ['生产任务', '生产协同', '生产绩效', '车间看板', '生产简报','外协看板', 
+                            '生产绩效', '车间看板', '生产任务', '生产协同', '生产绩效', '车间看板'];
+                homePage.innerHTML = `<div class="title">${title}</div>
+                    <img class="swigger" src="${swigger}" alt="">
+                    <div class="functionTip">
+                        <ul class="functionTip-ul"></ul>
+                    </div>`
+                let functionTipUl = document.querySelector('.functionTip-ul');
+                for (var i = 0; i < imgs.length; i++) {
+                    functionTipUl.innerHTML +=`<li><img src="${imgs[i]}" alt=""><div>${tips[i]}</div></li>`
+                }
+                let functionTipUlLi = functionTipUl.querySelectorAll('li');
+                for (let i = 0; i < tips.length; i++) {
+                    functionTipUlLi[i].onclick = function () {
+                        window.location.href = './subPage/productionTasks.html'
+                    }
+                }
+            }
+            init();
+
+            //点击footer时的事件
+            for(let i= 0;i< footerUlLi.length;i++){
+                footerUlLi[i].onclick = function() {
+                    let index = $(this).index();
+                    for (let j = 0; j < footertips.length; j++) {
+                        footerUlLi[j].children[1].style.color = '#333';
+                        footerUlLi[j].children[1].style.fontWeight = 400;
+                    }
+                    footerUlLi[index].children[1].style.color = '#0F5299';
+                    footerUlLi[index].children[1].style.fontWeight = 600;
+                    if(this.innerText === '首页'){
+                        platformMessage.innerHTML = '';
+                        Mine.innerHTML = '';
+                        init();
+                    }else if (this.innerText === '平台消息') {
+                        homePage.innerHTML = '';
+                        Mine.innerHTML = '';
+                        let title = '平台消息';
+                        let MessageList = [
+                            {
+                                'notice': '生产任务通知',
+                                'data': '2019-06-02 12:21:04',
+                                'content': '此处为消息列表的介绍文字信息。您的生产任务号HD-2001-334的任务单已成功启动，请及时关注生产中的状态。',
+                            }, {
+                                'notice': '生产任务通知',
+                                'data': '2019-06-02 12:21:04',
+                                'content': '此处为消息列表的介绍文字信息。您的生产任务号HD-2001-334的任务单已成功启动，请及时关注生产中的状态。',
+                            }, {
+                                'notice': '生产任务通知',
+                                'data': '2019-06-02 12:21:04',
+                                'content': '此处为消息列表的介绍文字信息。您的生产任务号HD-2001-334的任务单已成功启动，请及时关注生产中的状态。',
+                            }, {
+                                'notice': '生产任务通知',
+                                'data': '2019-06-02 12:21:04',
+                                'content': '此处为消息列表的介绍文字信息。您的生产任务号HD-2001-334的任务单已成功启动，请及时关注生产中的状态。',
+                            }, {
+                                'notice': '生产任务通知',
+                                'data': '2019-06-02 12:21:04',
+                                'content': '此处为消息列表的介绍文字信息。您的生产任务号HD-2001-334的任务单已成功启动，请及时关注生产中的状态。',
+                            }, {
+                                'notice': '生产任务通知',
+                                'data': '2019-06-02 12:21:04',
+                                'content': '此处为消息列表的介绍文字信息。您的生产任务号HD-2001-334的任务单已成功启动，请及时关注生产中的状态。',
+                            }, {
+                                'notice': '生产任务通知',
+                                'data': '2019-06-02 12:21:04',
+                                'content': '此处为消息列表的介绍文字信息。您的生产任务号HD-2001-334的任务单已成功启动，请及时关注生产中的状态。',
+                            }, {
+                                'notice': '生产任务通知',
+                                'data': '2019-06-02 12:21:04',
+                                'content': '此处为消息列表的介绍文字信息。您的生产任务号HD-2001-334的任务单已成功启动，请及时关注生产中的状态。',
+                            },
+                        ]
+                        platformMessage.innerHTML = `<div class="title">${title}</div>
+                            <div class="messageTip">
+                                <ul class="messageTip-ul"></ul>
+                            </div>`
+                        let messageTipUl = document.querySelector('.messageTip-ul');
+
+                        let start;  // 辅助变量：触摸开始时，相对于文档顶部的Y坐标
+                        let refresh = false;  // 辅助变量：是否刷新
+                        
+                        //下拉刷新 开始
+                        platformMessage.addEventListener('touchstart', function (event) {
+                            let text = document.createElement('div');  // 写着“下拉刷新”的元素
+                            text.className = "downRefresh";
+                            messageTipUl.prepend(text)
+                            let touch = event.touches[0];
+                            start = touch.pageY;  // 辅助变量：触摸开始时，相对于文档顶部的Y坐标
+                        }, false);
+                        platformMessage.addEventListener('touchmove', function (event) {
+                            let touch = event.touches[0]; 
+                            if (platformMessage.scrollTop <= 0) {
+                                // 如果ul列表到顶部，修改ul列表的偏移,显示“下拉刷新”，并准备触发下拉刷新功能，可自定义
+                                messageTipUl.style.top = messageTipUl.offsetTop + touch.pageY - start + 'px'; 
+                                start = touch.pageY;
+                                // 若ul偏移量过大,则修改文字,refresh置为true,配合'touchend'刷新
+                                if (messageTipUl.offsetTop >= 150) {
+                                    this.children[1].children[0].children[0].innerHTML = "释放立即刷新";
+                                    refresh = true;
+                                    messageTipUl.style.top = 150 + 'px';
+                                }else{
+                                    this.children[1].children[0].children[0].innerHTML = "下拉可以刷新";
+                                }
+                            }
+                        }, false);
+                        platformMessage.addEventListener('touchend', function (event) {
+                            // 若'touchend'时，ul偏移,用setInterval循环恢复ul的偏移量
+                            let _this = this;
+                            if (messageTipUl.offsetTop >= 0) {
+                                let times = setInterval(function () {
+                                    messageTipUl.style.top = messageTipUl.offsetTop - 10 + 'px';
+                                    _this.children[1].children[0].children[0].innerHTML = "正在刷新";
+                                    // 若ul的偏移量恢复，clearInterval
+                                    if (messageTipUl.offsetTop <= 80) {
+                                        clearInterval(times);
+                                            setTimeout(() => {
+                                                _this.children[1].children[0].children[0].innerHTML = "";
+                                                messageTipUl.innerHTML = ""
+                                                    for (var i = 0; i < MessageList.length; i++) {
+                                                        messageTipUl.innerHTML += `<li>
+                                                            <div class="notice-data">
+                                                                <h4 class="notice">${MessageList[i].notice}</h4>
+                                                                <div class="data">${MessageList[i].data}</div>
+                                                            </div>
+                                                            <p class="content">${MessageList[i].content}</p>
+                                                        </li>`
+                                                    }
+                                            }, 300);
+                                        // 若恢复时'refresh===true',刷新页面
+                                        // if (refresh) {
+                                        //     location.reload();
+                                        // }
+                                    } 
+                                },10)
+                            }
+                        }, false);
+                        //下拉刷新 结束
+
+                        // 上拉加载 开始
+                        let num = 11; // 要添加的li文本，可自定义
+                        let isLoad = false; // 节流阀辅助变量
+                        // 添加li的方法，可自定义
+                        function addLi() {
+                            // let fragment = document.createElement('div');
+                            for (let i = 0; i < 10; i++) {
+                                let li = document.createElement('li');
+                                // li.className = 'li';
+                                li.innerHTML = `<div class="notice-data">
+                                        <h4 class="notice">生产任务通知</h4>
+                                        <div class="data">2019-06-02 12:21:04</div>
+                                    </div>
+                                    <p class="content">此处为消息列表的介绍文字信息。您的生产任务号HD-2001-334的任务单已成功启动，请及时关注生产中的状态。</p>`;
+                                messageTipUl.append(li);
+                            }
+                        }
+
+                        window.addEventListener('scroll', function () {
+                            // console.log(document.documentElement.scrollHeight-document.documentElement.scrollTop)
+                            if (document.documentElement.scrollHeight - document.documentElement.scrollTop <= 667 && isLoad === false) {
+                                isLoad = true;
+                                addLi();
+                                setTimeout(function () {
+                                    isLoad = false;
+                                }, 300)  //  节流阀
+                            }
+                        }, false);
+                        // 上拉加载 结束
+
+                        
+                        for (var i = 0; i < MessageList.length; i++) {
+                            messageTipUl.innerHTML += `<li>
+                                    <div class="notice-data">
+                                        <h4 class="notice">${MessageList[i].notice}</h4>
+                                        <div class="data">${MessageList[i].data}</div>
+                                    </div>
+                                    <p class="content">${MessageList[i].content}</p>
+                                </li>`
+                        }
+
+                    }else if (this.innerText === '我的') {
+                        homePage.innerHTML = '';
+                        platformMessage.innerHTML = '';
+                        let title = '我的';
+                        let headerIme = "./img/user.png";
+                        let userName = '野狼传说';
+                        let Logout = "退出登录";
+                        let MineContentlist = [
+                            {
+                                'backgroundImg':'./img/navi_icon_application_default.png',
+                                'listName':'清除缓存'
+                            }, {
+                                'backgroundImg': './img/member_icon_data.png',
+                                'listName': '关于我们'
+                            }, {
+                                'backgroundImg': './img/mode_close.png',
+                                'listName': '帮助中心'
+                            }, {
+                                'backgroundImg': './img/navi_icon_crafts_default.png',
+                                'listName': '设置'
+                            },
+                        ]
+                        Mine.innerHTML = `<div class="title">${title}</div>
+                            <div class="headerImg-userName">
+                                <img src="${headerIme}" alt="">
+                                <span class="userName">${userName}</span>
+                            </div>
+                            <div class="MineContent">
+                                <ul class="MineContentUl ui-list ui-list-link ui-list-single ui-border-tb"></ul>
+                            </div>
+                            <div class="Logout">${Logout}</div>`
+                        let MineContentUl = document.querySelector('.MineContentUl');
+                        for (var i = 0; i < MineContentlist.length; i++) {
+                            MineContentUl.innerHTML += `<li>
+                                    <div class="backgroundImg ui-avatar-s">
+                                        <span style="background-image:url(${MineContentlist[i].backgroundImg})"></span>
+                                    </div>
+                                    <div class="ui-list-info ui-border-t">
+                                        <h4 class="ui-nowrap">${MineContentlist[i].listName}</h4>
+                                    </div>
+                                </li>`
+                        }
+                    }
+                }
+            }
+            
+            
+        }
+        //监听滚动时返回顶部
+        window.onscroll = function () {
+            let scrollTop = document.documentElement.scrollTop;
+            if(scrollTop > 200 ){
+                $('.returnTop').css('display','block');
+            }else{
+                $('.returnTop').css('display', 'none');
+            }
+        }
+    </script>
+</body>
+</html>

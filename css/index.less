@@ -1,0 +1,242 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@media only screen and (max-width: 600px) {
+    html {
+        font-size: 16px;
+        background: #eee;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    html {
+        font-size: 18px;
+        background: #eee;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    html {
+        font-size: 20px;
+        background: #eee;
+    }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    html {
+        font-size: 22px;
+        background: #eee;
+    }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    html {
+        font-size: 24px;
+        background: #eee;
+    }
+}
+.view{
+    width: 100%;
+    .homePage{
+        background: #fff;
+        .title{
+            width: 100%;
+            top: 0;
+            text-align: center;
+            font-size: 1.5rem;
+            height: 4rem;
+            font-weight: 600;
+            padding-top: 1rem;
+            background-color: #fff;
+            position: fixed;
+            z-index: 999;
+        }
+        .swigger{
+            padding-top: 4rem;
+            width: 100%;
+        }
+        .functionTip{
+            padding-bottom: 4rem;
+            .functionTip-ul{
+                padding-top: 1.5rem;
+                li{
+                    margin-bottom: 1rem;
+                    display: inline-block;
+                    width: 25%;
+                    // height: 7.5rem; 
+                    text-align: center;
+                    vertical-align: top;
+                    color: #333;
+                    font-size: 1rem;
+                    img{
+                        width: 65%;
+                    }
+                }
+            }
+        }
+    }
+    .platformMessage{
+        background: #eee;
+        .title{
+            width: 100%;
+            top: 0;
+            text-align: center;
+            font-size: 1.5rem;
+            height: 4rem;
+            font-weight: 600;
+            padding-top: 1rem;
+            background-color: #fff;
+            position: fixed;
+            z-index: 999;
+        }
+        .messageTip{
+            padding-top: 4.6rem;
+            padding-bottom: 4rem;
+            width: 100%;
+            position: relative;
+            .messageTip-ul{
+                position: absolute;
+                .downRefresh{
+                    text-align: center;
+                    margin-bottom: 0.8rem;
+                }
+                li{
+                    background: #fff;
+                    padding: 1rem;
+                    margin-bottom: 0.2rem;
+                    .notice-data{
+                       .notice{
+                           display: inline-block;
+                       }
+                       .data{
+                            width: 65%;
+                            text-align: right;
+                            display: inline-block;
+                            color: #999;
+                            font-size: 1rem;
+                       } 
+                    }
+                    .content{
+                        color: #666;
+                        font-size: 1rem;
+                        letter-spacing: 0.3rem;
+                        padding: 0.5rem 0;
+                    }
+                }
+            }
+        }
+    }
+    .Mine{
+        background: #eee;
+        .title{
+            width: 100%;
+            top: 0;
+            text-align: center;
+            font-size: 1.5rem;
+            height: 4rem;
+            font-weight: 600;
+            padding-top: 1rem;
+            background-color: #fff;
+            position: fixed;
+            z-index: 999;
+        }
+        .headerImg-userName{
+            width: 100%;
+            margin-top: 4.6rem;
+            background-color: #fff;
+            img{
+                width: 25%;
+                margin: 1.5rem 1rem;
+                display: inline-block;
+                vertical-align: middle;
+                border: 1px dashed #999;
+            }
+            .userName{
+                display: inline-block;
+                vertical-align: middle;
+                font-size: 1.2rem;
+            }
+        }
+        .MineContent{
+            padding-top: 0.6rem;
+            width: 100%;
+            ul{
+                width: 100%;
+                li{
+                    .backgroundImg{
+                        border: 1px dashed #999;
+                        border-radius: 0;
+                        span{
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            background-size: 80% 80%;
+                        }
+                    }
+                    h4{
+                        color: #333;
+                    }
+                    &:nth-child(1){
+                        &:after{
+                            content: "";
+                        }
+                    }
+                }
+            }
+        }
+        .Logout{
+            margin-top: 0.6rem;
+            width: 100%;
+            height: 3rem;
+            line-height: 3rem;
+            padding-left: 10%;
+            font-size: #333;
+            background: #fff;
+        }
+    }
+    .footer{
+        width: 100%;
+        position: fixed;
+        z-index: 1000;
+        bottom: 0;
+        .footer-ul{
+            width: 100%;
+            background-color: #f2f2f2;
+            li{
+                display: inline-block;
+                width: 33.3%;
+                height: 3.8rem;
+                text-align: center;
+                vertical-align: bottom;
+                color: #333;
+                font-size: 0.8rem;
+                img{
+                    width: 20%;
+                }
+                &:nth-child(2){
+                    img{
+                        width: 32%;
+                    }
+                }
+            }
+        }
+    }
+    .returnTop{
+        width: 3rem;
+        height: 3rem;
+        line-height: 3rem;
+        text-align: center;
+        border-radius: 50%;
+        position: fixed;
+        z-index: 2000;
+        bottom: 5rem;
+        right: 1.5rem;
+        background: rgba(213,134,134,.5);
+        display: none;
+    }
+}

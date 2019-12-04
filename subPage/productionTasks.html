@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App</title>
+    <link rel="stylesheet" href="../css/productionTasks.css">
+    <link rel="stylesheet" href="../css/frozen.css">
+</head>
+<body>
+    <div class="view">
+        <div class="title">
+            <div class="title-icon"><</div>
+            <div class="title-item">生产任务</div>
+        </div>
+        <div class="tabNav ui-tab" style="margin-top: 4rem;">
+            <ul class="tabNav-ul ui-tab-nav ui-border-b" style="width:80%"></ul>
+            <div class="selectSingle">筛选</div>
+            <ul class="tabContent-ul ui-tab-content"></ul>
+        </div>
+    </div>
+    <script src="../js/zepto.min.js"></script>
+    <script>
+        window.onload = function () {
+            let titleIcon = document.querySelector('.title-icon');
+            titleIcon.onclick = function() {
+                window.history.go(-1);
+            }
+
+            let tabNav = ['已下发', '生产中', '待接班', '已完工'];
+            let tabNavNum = [20, 18, 4, 36];
+            let tabContent = ['内容1', '内容2', '内容3', '内容4'];
+
+            let ContentList = [
+                {
+                    'img':'../img/prod-icon.png',
+                    'Meno':'HD-产-2019-021',
+                    'finishTime':'2019-07-01 13:21:00',
+                    'productionMaterials':'B473-YD-1002001',
+                    'Num':460,
+                    'deliveryDate':'2019-09-01',
+                    'version':'1.0',
+                    'states':0,
+                }, {
+                    'img': '../img/prod-icon.png',
+                    'Meno': 'HD-产-2019-022',
+                    'finishTime': '2019-07-02 13:22:00',
+                    'productionMaterials': 'B473-YD-1002002',
+                    'Num': 370,
+                    'deliveryDate': '2019-09-02',
+                    'version': '1.0',
+                    'states': 1,
+                }, {
+                    'img': '../img/prod-icon.png',
+                    'Meno': 'HD-产-2019-023',
+                    'finishTime': '2019-07-03 13:23:00',
+                    'productionMaterials': 'B473-YD-1002003',
+                    'Num': 405,
+                    'deliveryDate': '2019-09-03',
+                    'version': '1.0',
+                    'states': 2,
+                }, {
+                    'img': '../img/prod-icon.png',
+                    'Meno': 'HD-产-2019-024',
+                    'finishTime': '2019-07-04 13:24:00',
+                    'productionMaterials': 'B473-YD-1002004',
+                    'Num': 405,
+                    'deliveryDate': '2019-09-04',
+                    'version': '1.0',
+                    'states': 3,
+                },
+                
+            ]
+
+            let tabNavUl = document.querySelector('.tabNav-ul');
+            let tabContentUl = document.querySelector('.tabContent-ul');
+
+            for (var i = 0; i < tabNav.length; i++) {
+                tabNavUl.innerHTML += `<li><span>${tabNav[i]}</span><div>(${tabNavNum[i]})</div></li>`
+            }
+            let tabNavUlLi = tabNavUl.querySelectorAll('li');
+
+            let initIndex = 0; 
+            let statesContentList = [];
+            function init(idx) {
+                tabNavUlLi[idx].children[0].style.color = '#0F5299';
+                tabNavUlLi[idx].children[1].style.color = '#0F5299';
+                statesContentList = [];
+                statesContentList = ContentList.filter(item => {
+                    return idx == item.states
+                });
+                tabContentUl.innerHTML = '';
+                for (var i = 0; i < statesContentList.length; i++) {
+                    tabContentUl.innerHTML += `<li>
+                        <div class="Task">
+                            <img src="${statesContentList[i].img}" alt="">
+                            <div class="Meno-finishTime">
+                                <div class="Meno">${statesContentList[i].Meno}</div>
+                                <div class="finishTime">下发时间：${statesContentList[i].finishTime}</div>
+                            </div>
+                            <div class="states">${tabNav[statesContentList[i].states]}</div>
+                        </div>  
+                        <div class="productionMaterials">生产物料：${statesContentList[i].productionMaterials}</div>
+                        <div class="productionNum">任务数量：${statesContentList[i].Num}</div>
+                        <div class="deliveryDate">交付日期：${statesContentList[i].deliveryDate}</div>
+                        <div class="version-detail">
+                            <div class="version">工艺路线版本：${statesContentList[i].version}</div>
+                            <div class="detail">详情</div>
+                        </div>
+                        <div class="handle">
+                            <span>启动</span>
+                            <span>故障</span>
+                            <span>交接班</span>
+                            <span>完工</span>
+                        </div>
+                    </li>`
+                }
+            }
+            init(initIndex, statesContentList)
+            for (let i = 0; i < tabNav.length; i++) {
+                tabNavUlLi[i].onclick = function (e) {
+                    let index = $(this).index();
+                    for(let j = 0; j < tabNav.length; j++){
+                        tabNavUlLi[j].children[0].style.color = '#333';
+                        tabNavUlLi[j].children[1].style.color = '#555';
+                    }
+
+                    init(index)
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
